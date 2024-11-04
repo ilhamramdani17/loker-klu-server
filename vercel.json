@@ -2,14 +2,14 @@
   "version": 2,
   "builds": [
     {
-      "src": "/loker-klu-server/index.js",
+      "src": "./loker-klu-server/index.js",
       "use": "@vercel/node"
     }
   ],
   "routes": [
     {
       "src": "/(.*)",
-      "dest": "/loker-klu-server/index.js"
+      "dest": "./loker-klu-server/index.js"
     }
   ]
 }
