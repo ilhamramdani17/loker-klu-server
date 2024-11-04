@@ -1,5 +1,11 @@
 {
   "version": 2,
+  "rewrites": [
+    { 
+      "source": "/(.*)", 
+      "destination": "/routes" 
+    }
+  ],
   "builds": [
     {
       "src": "loker-klu-server/index.js",
