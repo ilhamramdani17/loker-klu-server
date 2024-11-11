@@ -8,8 +8,8 @@
   ],
   "routes": [
     {
-      "src": "/(.*)",
-      "dest": "/"
+      "src": "/loker-klu-server/api/index",
+      "dest": "/api/index.js"
     }
   ]
 }
