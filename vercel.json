@@ -2,14 +2,8 @@
   "version": 2,
   "builds": [
     {
-      "src": "loker-klu-server/api/index.js",
+      "src": "api/index.js",
       "use": "@vercel/node"
-    }
-  ],
-  "routes": [
-    {
-      "src": "/loker-klu-server/api/index",
-      "dest": "/api/index.js"
     }
   ]
 }
