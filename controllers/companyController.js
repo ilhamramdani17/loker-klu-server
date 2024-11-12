@@ -424,7 +424,7 @@ export const companyRegistrate = async (req, res) => {
                   });
                 } else {
                   res.json({
-                    code: 200,
+                    code: priv,
                     status: "OK",
                     mssg: "Proses registrasi selesai,untuk proses selanjutnya silahkan cek email yang telah kami kirimkan.",
                   });
