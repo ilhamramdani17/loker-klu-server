@@ -426,7 +426,7 @@ export const companyRegistrate = async (req, res) => {
                   res.json({
                     code: 200,
                     status: "OK",
-                    mssg: `${process.env.B}${process.env.M}`,
+                    mssg: "Proses registrasi selesai,untuk proses selanjutnya silahkan cek email yang telah kami kirimkan.",
                   });
                 }
               });
