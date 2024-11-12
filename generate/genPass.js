@@ -21,7 +21,7 @@ export const genPass = (password) => {
 }
 
 export const getPublic = (priv)=> {
-    const publ = (process.env.B ** priv) % process.env.M
+    const publ = (5 ** priv) % 23
     return publ
 }
 
