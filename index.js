@@ -15,7 +15,7 @@ const port  = process.env.PORT || 8000;
 const app = express();
 
 app.use(cors({
-    origin: ["https://lokerklu.info"], 
+    origin: ["http://localhost:5173","https://lokerklu.info"], 
     method: ["GET","POST"] 
 }))
 
