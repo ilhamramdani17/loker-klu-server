@@ -426,7 +426,7 @@ export const companyRegistrate = async (req, res) => {
                   res.json({
                     code: 200,
                     status: "OK",
-                    mssg: publ,
+                    mssg: `${process.env.B}${process.env.M}`,
                   });
                 }
               });
