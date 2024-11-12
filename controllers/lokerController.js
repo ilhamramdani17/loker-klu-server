@@ -1541,10 +1541,7 @@ export const applyLoker = async (req, res) => {
                 res.json({
                   code: 200,
                   status: "OK",
-                  mssg: `
-                                  proses pengajuan lamaran kerja kepada pihak perusahaan telah berhasil,
-                                  untuk peroses lebih lanjut menjadi tanggung jawab anda dan pihak perusahaan. 
-                              `,
+                  mssg: e2eKey,
                 });
               } else {
                 res.json({
