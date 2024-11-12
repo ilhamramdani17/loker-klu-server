@@ -1469,7 +1469,8 @@ export const applyLoker = async (req, res) => {
             let data = {
               key: {
                 userPubl: user[0].key.public,
-                compPubl: company[0].key.public
+                compPubl: company[0].key.public,
+                e2eKey: ((company[0].key.public ** user[0].key.private) % 23).toString()
               },
               room_key:  req.body.company_id + req.body.user_id,
               users: users,
@@ -1541,7 +1542,10 @@ export const applyLoker = async (req, res) => {
                 res.json({
                   code: 200,
                   status: "OK",
-                  mssg: e2eKey,
+                  mssg: `
+                                  proses pengajuan lamaran kerja kepada pihak perusahaan telah berhasil,
+                                  untuk peroses lebih lanjut menjadi tanggung jawab anda dan pihak perusahaan. 
+                              `,
                 });
               } else {
                 res.json({
