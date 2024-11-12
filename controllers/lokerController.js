@@ -1470,7 +1470,7 @@ export const applyLoker = async (req, res) => {
               key: {
                 userPubl: user[0].key.public,
                 compPubl: company[0].key.public,
-                e2eKey: ((company[0].key.public ** user[0].key.private) % 23)
+                e2eKey: ((user[0].key.private ** company[0].key.public) % 23)
               },
               room_key:  req.body.company_id + req.body.user_id,
               users: users,
