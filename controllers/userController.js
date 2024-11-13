@@ -6,7 +6,6 @@ import {
   modExp,
   genPass,
   genToken,
-  getPublic,
   generatePrimes,
   verifyPass,
   verifyJwtToken,
