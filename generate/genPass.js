@@ -52,7 +52,7 @@ export const generatePrimes = ()=> {
     return primes[generateRandomNumber(1,primes.length)];
 }
 
-export const getE2eKey = (base, exponent, modulus) => {
+export const modExp = (base, exponent, modulus) => {
     let result = 1;  // Hasil awal (base^0 % modulus)
     base = base % modulus;  // Mengurangi base dalam batas modulus
 
