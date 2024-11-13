@@ -11,8 +11,7 @@ import {
   verifyPass,
   genFactoryToken,
   verifyJwtToken,
-  generatePrimes,
-  getPublic,
+  generatePrimes
 } from "../generate/genPass.js";
 
 dotenv.config();
