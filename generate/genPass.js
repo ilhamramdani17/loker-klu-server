@@ -52,6 +52,23 @@ export const generatePrimes = ()=> {
     return primes[generateRandomNumber(1,primes.length)];
 }
 
+export const getE2eKey = (base, exponent, modulus) => {
+    let result = 1;  // Hasil awal (base^0 % modulus)
+    base = base % modulus;  // Mengurangi base dalam batas modulus
+
+    while (exponent > 0) {
+        // Jika eksponen ganjil, kalikan result dengan base
+        if (exponent % 2 === 1) {
+            result = (result * base) % modulus;
+        }
+        // Update exponent dan base
+        exponent = Math.floor(exponent / 2);  // Eksponen dibagi dua (eksponen setengah)
+        base = (base * base) % modulus;  // Basis diperbesar menjadi kuadratnya
+    }
+
+    return result;
+}
+
 export const verifyPass = (hashPass,reqPass) => {
     const secure = hash.compareSync(reqPass,hashPass) 
     if (secure) {
