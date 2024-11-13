@@ -3,6 +3,7 @@ import Lokers from "../models/Lokers.js";
 import Company from "../models/Company.js";
 import { remove, store } from "../utils/VercelBlob.js";
 import {
+  modExp,
   genPass,
   genToken,
   getPublic,
@@ -82,7 +83,7 @@ export const userGoogleLogin = async (req, res) => {
     if (!isDuplicate.length) {
       const hashPass = genPass(req.body.email);
       const priv = generatePrimes()
-      const publ = getPublic(priv)
+      const publ = modExp(5,priv,23)
       const data = {
         key: {
           private: priv, 
