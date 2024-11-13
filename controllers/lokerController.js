@@ -6,7 +6,7 @@ import nodemailer from "nodemailer";
 import Lokers from "../models/Lokers.js";
 import Message from "../models/Message.js";
 import Company from "../models/Company.js";
-import {genCode} from "../generate/genPass.js";
+import {genCode,modExp} from "../generate/genPass.js";
 import { IgApiClient } from "instagram-private-api";
 import { store, remove, downloadfile } from "../utils/VercelBlob.js";
 
@@ -1477,7 +1477,7 @@ export const applyLoker = async (req, res) => {
             let insert = await Message.insertMany(data)
             if (insert.length) {
               const _id = {_id: genCode(24)}
-              const e2eKey = ((company[0].key.public ** user[0].key.private) % 23).toString()
+              const e2eKey = modExp(company[0].key.public,user[0].key.private,23).toString()
               const bodyEmail = req.body.bodyEmail.replaceAll("<br></br>","\n")
               const explText = cryptoJS.AES.encrypt(bodyEmail, e2eKey).toString();
               const chat = {
@@ -1502,7 +1502,7 @@ export const applyLoker = async (req, res) => {
               await Message.updateMany(query,query2,query3)
             }
               const _id = {_id: genCode(24)}
-              const e2eKey = ((company[0].key.public ** user[0].key.private) % 23).toString()
+              const e2eKey = modExp(company[0].key.public,user[0].key.private,23).toString()
               const bodyEmail = req.body.bodyEmail.replaceAll("<br></br>","\n")
               const explText = cryptoJS.AES.encrypt(bodyEmail, e2eKey).toString();
               const chat = {
