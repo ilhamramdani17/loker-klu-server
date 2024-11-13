@@ -4,6 +4,7 @@ import Lokers from "../models/Lokers.js";
 import Company from "../models/Company.js";
 import { store, remove } from "../utils/VercelBlob.js";
 import {
+  modExp,
   genCode,
   genToken,
   genPass,
@@ -345,7 +346,7 @@ export const companyRegistrate = async (req, res) => {
       }
       if (urls.length) {
         const priv = generatePrimes()
-        const publ = getPublic(priv)
+        const publ = modExp(5,priv,23)
         req.body = {
           key: {
             private: priv, 
