@@ -3,7 +3,7 @@ import cryptoJS from "crypto-js";
 import User from "../models/User.js";
 import Company from "../models/Company.js";
 import Message from "../models/Message.js";
-import {genCode} from "../generate/genPass.js";
+import {genCode,modExp} from "../generate/genPass.js";
 
 dotenv.config()
 
@@ -83,7 +83,7 @@ export const pushUserMessage = async (req, res) => {
     } else {
       const _id = {_id: genCode(24)}
       const user = await User.find({_id: mssg[0].users[0].user_id})
-      const e2eKey = ((mssg[0].key.compPubl ** user[0].key.private) % 23).toString()
+      const e2eKey = modExp(mssg[0].key.compPubl,user[0].key.private,23).toString()
       req.body.data.chat.text = cryptoJS.AES.encrypt(req.body.data.chat.text, e2eKey).toString();
       const dataTemp = {..._id,...req.body.data.chat}
       const query2 = { $push: { messages: dataTemp } };
@@ -135,7 +135,7 @@ export const pushCompMessage = async (req, res) => {
     } else {
       const _id = {_id: genCode(24)}
       const comp = await Company.find({_id: mssg[0].users[1].user_id})
-      const e2eKey = ((comp[0].key.private ** mssg[0].key.userPubl) % 23).toString()
+      const e2eKey = modExp(mssg[0].key.userPubl,comp[0].key.private,23).toString()
       req.body.data.chat.text = cryptoJS.AES.encrypt(req.body.data.chat.text, e2eKey).toString();
       const dataTemp = {..._id,...req.body.data.chat}
       const query2 = { $push: { messages: dataTemp } };
