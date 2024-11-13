@@ -20,11 +20,6 @@ export const genPass = (password) => {
     return hashPassword;
 }
 
-export const getPublic = (priv)=> {
-    const publ = (5 ** priv) % 23
-    return publ
-}
-
 export const generatePrimes = ()=> {
     function isPrime(num) {
         if (num <= 1) return false;
