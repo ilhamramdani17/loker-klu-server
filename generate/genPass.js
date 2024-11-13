@@ -28,21 +28,27 @@ export const getPublic = (priv)=> {
 export const generatePrimes = ()=> {
     function isPrime(num) {
         if (num <= 1) return false;
-        for (let i = 2; i <= Math.sqrt(num); i++) {
+        if (num === 2) return true;
+        if (num % 2 === 0) return false;
+        for (let i = 3; i * i <= num; i += 2) {
             if (num % i === 0) return false;
         }
         return true;
+    }  
+    function generatePrimes(limit) {
+        let primes = [];
+        for (let i = 2; i <= limit; i++) {
+            if (isPrime(i)) {
+                primes.push(i);
+            }
+        }
+        return primes;
     }
     function generateRandomNumber(min, max) {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
-    const limit = 200
-    const primes = [];
-    for (let i = 2; i <= limit; i++) {
-        if (isPrime(i)) {
-            primes.push(i);
-        }
-    }
+    const limit = 1000;
+    const primes = generatePrimes(limit);
     return primes[generateRandomNumber(1,primes.length)];
 }
 
