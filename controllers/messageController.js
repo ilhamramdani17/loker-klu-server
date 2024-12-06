@@ -245,7 +245,7 @@ export const getCompanieChatList = async (req, res) => {
 };
 
 export const deleteUserChat = async (req, res) => {
-  const query = {room_key: req.body.key,users: { $elemMatch: {available: false}}}
+  const query = {_id: req.body.key,users: { $elemMatch: {available: false}}}
   const isformat = await Message.find(query).countDocuments()
   if (isformat) {
     const del = await Message.deleteMany(query)
@@ -264,8 +264,8 @@ export const deleteUserChat = async (req, res) => {
       });
     }
   } else {
-    const userkey = req.body.key.slice(24).toString();
-    const query1 = { room_key: req.body.key };
+    const userkey = req.body.user_id
+    const query1 = { _id: req.body.key };
     const query2 = { $set: {"users.$[filt].available" : false  } };
     const query3 = {arrayFilters: [{"filt.user_id": userkey}]}
     let remove = await Message.updateMany(query1,query2,query3);
@@ -287,7 +287,7 @@ export const deleteUserChat = async (req, res) => {
 };
 
 export const deleteCompanieChat = async (req, res) => {
-  const query = {room_key: req.body.key,users: { $elemMatch: {available: false}}}
+  const query = {_id: req.body.key,users: { $elemMatch: {available: false}}}
   const isformat = await Message.find(query).countDocuments()
   if (isformat) {
     const del = await Message.deleteMany(query)
@@ -306,8 +306,8 @@ export const deleteCompanieChat = async (req, res) => {
       });
     }
   } else {
-    const companiekey = req.body.key.slice(0, 24).toString();
-    const query1 = { room_key: req.body.key };
+    const companiekey = req.body.comp_id;
+    const query1 = { _id: req.body.key };
     const query2 = { $set: {"users.$[filt].available" : false  } };
     const query3 = {arrayFilters: [{"filt.user_id": companiekey}]}
     let remove = await Message.updateMany(query1,query2,query3);
@@ -326,4 +326,4 @@ export const deleteCompanieChat = async (req, res) => {
       });
     }
   }
-}; 
+};
