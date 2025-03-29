@@ -1,33 +1,31 @@
-import cors from "cors";
-import dotenv from "dotenv";
+import Cors from "cors";
 import "./utils/database.js";
 import express from "express";
 import bodyParser from "body-parser";
-import router from "./routes/router.js"
-import cookieParser from "cookie-parser";
-import mongoSanitize from "express-mongo-sanitize";
-import rateLimitMiddleware from "./middleware/requestLimiter.js";
+import jobsRouter from "./routes/jobsRouter.js";
+import StatusRouter from "./routes/statusRouter.js";
+import TemplatesRouter from "./routes/templatesRouter.js";
+import KategoriesRouter from "./routes/kategoriesRouter.js";
 
-dotenv.config();
-
-const port  = process.env.PORT || 8000;
-
+const PORT = 3000;
 const app = express();
 
-app.use(cors({
-    origin: ["https://lokerklu.info"], 
-    method: ["GET","POST"] 
-}))
+// Middleware to parse JSON
+app.use(express.json());
+app.use(bodyParser.json());
+app.use(express.urlencoded({ extended: true }));
+app.use(bodyParser.urlencoded({ extended: true }));
 
-app.use(rateLimitMiddleware)
-app.use(cookieParser())
-app.use(express.json()) 
-app.use(express.static("public")) 
-app.use(bodyParser.urlencoded({extended: true})) 
-app.use(mongoSanitize())
+// Cors middleware
+app.use(Cors());
 
-app.use(router);
+//routes
+app.use(jobsRouter);
+app.use(StatusRouter);
+app.use(TemplatesRouter);
+app.use(KategoriesRouter);
 
-app.listen(port, () => {
-    console.log(`server still runing on port ${port}`);
-})
+// Start the server
+app.listen(PORT, () => {
+  console.log(`Server is running at http://localhost:${PORT}`);
+});
