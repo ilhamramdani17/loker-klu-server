@@ -154,7 +154,7 @@ export const getEmailTemplates = async (request, response) => {
       }\nDi ${
         selectedJob.location
       }\n\nDengan hormat,\nSesuai dengan penawaran lowongan pekerjaan yang dimuat di Aplikasi LK Jobs Portal tanggal ${
-        selectedJob.created_at.toDateString
+        selectedJob.created_at.toDateString()
       } di mana ${selectedJob.company} sedang mencari ${
         selectedJob.title
       }, saya mengajukan diri untuk bergabung ke dalam tim ${
@@ -171,7 +171,7 @@ export const getEmailTemplates = async (request, response) => {
       id: 10,
       slug: "friendly\n applyed email\n",
       body: `Dengan hormat,\nSesuai dengan informasi yang dimuat di Aplikasi LK Jobs Portal, edisi ${
-        selectedJob.created_at.toDateString
+        selectedJob.created_at.toDateString()
       }, di mana diinformasikan ${
         selectedJob.company
       } sedang membutuhkan tenaga kerja sebagai ${
@@ -225,7 +225,7 @@ export const getEmailTemplates = async (request, response) => {
       }\n\nDengan hormat,\nSesuai dengan penawaran lowongan pekerjaan dari ${
         selectedJob.company
       }, seperti yang termuat di aplikasi LK Jobs Portal tanggal ${
-        selectedJob.created_at.toDateString
+        selectedJob.created_at.toDateString()
       }. Saya mengajukan diri untuk bergabung ke dalam Tim ${
         selectedJob.title
       } di ${
@@ -252,7 +252,7 @@ export const getEmailTemplates = async (request, response) => {
       id: 15,
       slug: "friendly applyed email",
       body: `Dengan hormat,\nSesuai dengan informasi yang didapatkan melalui aplikasi LK Jobs Portal pada tanggal ${
-        selectedJob.created_at.toDateString
+        selectedJob.created_at.toDateString()
       } di mana ${
         selectedJob.company
       } membuka booth dan memberi informasi lowongan tenaga kerja sebagai ${
@@ -269,7 +269,7 @@ export const getEmailTemplates = async (request, response) => {
       body: `Dengan hormat,\nSehubungan dengan adanya lowongan pekerjaan sebagai ${
         selectedJob.title
       } pada aplikasi LK Jobs Portal pada tanggal ${
-        selectedJob.created_at.toDateString
+        selectedJob.created_at.toDateString()
       }, saya yang bertanda tangan di bawah ini:\n\n      Nama :\n      Alamat :\n      Tempat, Tanggal Lahir :\n      Pendidikan :\n\nBermaksud untuk mengajukan lamaran pada posisi tersebut. Bersama dengan surat ini pula saya melampirkan ${
         selectedJob.file_requirement
           ? selectedJob.file_requirement.map((item) => `${item}`)
