@@ -7,8 +7,8 @@ import {
 
 const jobsRouter = express.Router()
 
-jobsRouter.get('/api/jobs',getJobsData);
 jobsRouter.get('/api/queries',getjobsByQuery);
+jobsRouter.get('/api/jobs/:location',getJobsData);
 jobsRouter.get('/api/jobs/:keyword',getJobsDataBySearch);
 
 export default jobsRouter;
