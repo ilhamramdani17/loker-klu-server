@@ -1,7 +1,13 @@
 import Jobs from "../models/Jobs.js";
 
 export const getJobsData = async (request, response) => {
-  const datas = await Jobs.find().limit(7);
+  let datas = [];
+  const location = request.params.location;
+  if(location == "undefined") {
+    datas = await Jobs.find().limit(7);
+  }else {
+    datas = await Jobs.find({ location: { $regex: keyword } }).limit(7);
+  }
   if (datas.length)
     response.json({
       code: 200,
