@@ -66,7 +66,7 @@ export const getJobsDataBySearch = async (request, response) => {
     response.json({
       code: 200,
       status: "OK",
-      data: datas,
+      datas: datas,
       messages: "success",
     });
   else
