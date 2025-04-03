@@ -1,3 +1,4 @@
+import dotenv from "dotenv";
 import Cors from "cors";
 import "./utils/database.js";
 import express from "express";
@@ -7,7 +8,9 @@ import StatusRouter from "./routes/statusRouter.js";
 import TemplatesRouter from "./routes/templatesRouter.js";
 import KategoriesRouter from "./routes/kategoriesRouter.js";
 
-const PORT = 3000;
+dotenv.config();
+
+const PORT = process.env.PORT; 
 const app = express();
 
 // Middleware to parse JSON
