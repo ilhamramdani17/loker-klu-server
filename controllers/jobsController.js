@@ -1,5 +1,22 @@
 import Jobs from "../models/Jobs.js";
 
+export const getCurrentJobs = async (request,response)=> {
+  const query = {"kategoris.kategori": { $regex: request.params.keyword }}
+  const datas = await Jobs.find(query).limit(4);
+  if (datas.length)
+    response.json({
+      code: 200,
+      status: "OK",
+      datas: datas,
+      message: "success",
+    });
+  else
+    response.json({
+      code: 404,
+      status: "NOT_FOUND",
+      messages: "No Data Found !",
+    });
+}
 export const getJobsData = async (request, response) => {
   let datas = [];
   const location = request.params.location;
