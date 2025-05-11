@@ -3,6 +3,7 @@ import {
     getJobsData,
     getjobsByQuery,
     getCurrentJobs,
+    getCompaniesJobs,
     getJobsDataBySearch 
 } from "../controllers/jobsController.js";
 
@@ -12,5 +13,6 @@ jobsRouter.get('/api/queries',getjobsByQuery);
 jobsRouter.get('/api/jobs/:location',getJobsData);
 jobsRouter.get('/api/jobs/:keyword',getJobsDataBySearch);
 jobsRouter.get('/api/current/jobs/:keyword',getCurrentJobs);
+jobsRouter.get('/api/companie/jobs/:keyword',getCompaniesJobs);
 
 export default jobsRouter;
