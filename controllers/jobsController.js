@@ -93,3 +93,23 @@ export const getJobsDataBySearch = async (request, response) => {
       messages: "No Data Found !",
     });
 };
+export const getCompaniesJobs = async (request, response) => {
+  const keyword = request.params.keyword.toString();
+  const query = {
+    company: keyword
+  };
+  const datas = await Jobs.find(query);
+  if (datas.length)
+    response.json({
+      code: 200,
+      status: "OK",
+      datas: datas,
+      messages: "success",
+    });
+  else
+    response.json({
+      code: 404,
+      status: "NOT_FOUND",
+      messages: "No Data Found !",
+    });
+};
