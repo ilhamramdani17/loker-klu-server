@@ -72,11 +72,11 @@ export const getJobsDataBySearch = async (request, response) => {
   const keyword = request.params.keyword.toString();
   const datas = await Jobs.find({
     $or: [
-      { title: { $regex: keyword } },
-      { company: { $regex: keyword } },
-      { location: { $regex: keyword } },
-      { "statuses.status": { $regex: keyword } },
-      { "kategoris.kategori": { $regex: keyword } },
+      { title: keyword },
+      { company: keyword },
+      { location: keyword },
+      { "statuses.status": keyword },
+      { "kategoris.kategori": keyword },
     ]
   });
   if (datas.length)
