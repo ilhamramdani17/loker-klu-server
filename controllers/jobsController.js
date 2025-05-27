@@ -20,9 +20,9 @@ export const getCurrentJobs = async (request,response)=> {
 export const getJobsData = async (request, response) => {
   let datas = [];
   const location = request.params.location;
-  datas = await Jobs.find({ location: { $regex: location } }).limit(7);
+  datas = await Jobs.find({ location: { $regex: location } }).limit(4);
   if(!datas.length) {
-    datas = await Jobs.find().limit(7);
+    datas = await Jobs.find().limit(4);
   }
   if (datas.length)
     response.json({
