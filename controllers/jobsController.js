@@ -2,7 +2,7 @@ import Jobs from "../models/Jobs.js";
 
 export const getCurrentJobs = async (request,response)=> {
   const query = {"kategoris.kategori": { $regex: request.params.keyword }}
-  const datas = await Jobs.find(query).limit(4);
+  const datas = await Jobs.find(query).limit(5);
   if (datas.length)
     response.json({
       code: 200,
@@ -20,9 +20,9 @@ export const getCurrentJobs = async (request,response)=> {
 export const getJobsData = async (request, response) => {
   let datas = [];
   const location = request.params.location;
-  datas = await Jobs.find({ location: { $regex: location } }).limit(4);
+  datas = await Jobs.find({ location: { $regex: location } }).limit(5);
   if(!datas.length) {
-    datas = await Jobs.find().limit(4);
+    datas = await Jobs.find().limit(5);
   }
   if (datas.length)
     response.json({
